@@ -13,16 +13,24 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/contacts', contactRoutes);
+// Routes - remove /api prefix since Vercel already routes to /api
+app.use('/auth', authRoutes);
+app.use('/contacts', contactRoutes);
 
 // Health check endpoint
-app.get('/api/health', (req, res) => {
+app.get('/health', (req, res) => {
   res.json({ 
     status: 'OK', 
     message: 'Contact Management API is running',
     timestamp: new Date().toISOString()
+  });
+});
+
+// Root API endpoint
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Contact Management API',
+    endpoints: ['/auth', '/contacts']
   });
 });
 
@@ -32,14 +40,6 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).json({
     success: false,
     message: err.message || 'Internal server error'
-  });
-});
-
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    message: 'Route not found'
   });
 });
 
