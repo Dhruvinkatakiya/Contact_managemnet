@@ -46,6 +46,7 @@ class DataStore {
       lastName: contactData.lastName,
       contactNumber: contactData.contactNumber,
       email: contactData.email || '',
+      status: contactData.status || 'Active',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };

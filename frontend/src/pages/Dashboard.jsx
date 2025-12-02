@@ -120,7 +120,7 @@ function Dashboard() {
           <div className="logo">
             <div className="logo-icon">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <rect width="32" height="32" rx="8" fill="#4F46E5" />
+                <rect width="32" height="32" rx="8" fill="#006666" />
                 <path
                   d="M16 9C13.2386 9 11 11.2386 11 14C11 16.7614 13.2386 19 16 19C18.7614 19 21 16.7614 21 14C21 11.2386 18.7614 9 16 9Z"
                   fill="white"

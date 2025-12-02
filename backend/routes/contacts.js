@@ -34,7 +34,11 @@ const validateContact = [
     .optional()
     .isEmail()
     .normalizeEmail()
-    .withMessage('Please provide a valid email address')
+    .withMessage('Please provide a valid email address'),
+  body('status')
+    .optional()
+    .isIn(['Active', 'Inactive'])
+    .withMessage('Status must be either Active or Inactive')
 ];
 
 // @route   GET /api/contacts
@@ -109,13 +113,14 @@ router.post('/', validateContact, (req, res) => {
       });
     }
 
-    const { firstName, lastName, contactNumber, email } = req.body;
+    const { firstName, lastName, contactNumber, email, status } = req.body;
 
     const contact = dataStore.createContact(req.user.userId, {
       firstName,
       lastName,
       contactNumber,
-      email
+      email,
+      status: status || 'Active'
     });
 
     res.status(201).json({
@@ -147,12 +152,12 @@ router.put('/:id', validateContact, (req, res) => {
       });
     }
 
-    const { firstName, lastName, contactNumber, email } = req.body;
+    const { firstName, lastName, contactNumber, email, status } = req.body;
 
     const updatedContact = dataStore.updateContact(
       req.user.userId,
       req.params.id,
-      { firstName, lastName, contactNumber, email }
+      { firstName, lastName, contactNumber, email, status }
     );
 
     if (!updatedContact) {

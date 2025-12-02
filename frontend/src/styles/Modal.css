@@ -117,7 +117,27 @@
   align-items: center;
   justify-content: center;
   padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-md);
+}
+
+.modal-icon-circle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-full);
   animation: iconPulse 0.5s ease-out;
+}
+
+.modal-icon-circle::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: currentColor;
+  opacity: 0.15;
+  animation: ripple 2s ease-out infinite;
 }
 
 @keyframes iconPulse {
@@ -134,32 +154,53 @@
   }
 }
 
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
 .modal-icon-header svg {
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-full);
   transition: transform var(--transition-base);
 }
 
-.modal-icon-header:hover svg {
+.modal-icon-header:hover .modal-icon-circle {
   transform: scale(1.05);
 }
 
-.modal-icon-header.danger svg {
+.modal-icon-header.danger .modal-icon-circle {
   background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.1) 100%);
   color: var(--danger-color);
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
 }
 
-.modal-icon-header.warning svg {
+.modal-icon-header.danger svg {
+  color: var(--danger-color);
+}
+
+.modal-icon-header.warning .modal-icon-circle {
   background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.1) 100%);
   color: var(--warning-color);
   box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
 }
 
-.modal-icon-header.primary svg {
-  background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(67, 56, 202, 0.1) 100%);
+.modal-icon-header.warning svg {
+  color: var(--warning-color);
+}
+
+.modal-icon-header.primary .modal-icon-circle {
+  background: linear-gradient(135deg, rgba(0, 102, 102, 0.15) 0%, rgba(0, 77, 77, 0.1) 100%);
   color: var(--primary-color);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 102, 102, 0.2);
+}
+
+.modal-icon-header.primary svg {
+  color: var(--primary-color);
 }
 
 /* Modal Form */

@@ -9,10 +9,10 @@
 
 :root {
   /* Color Palette */
-  --primary-color: #4F46E5;
-  --primary-hover: #4338CA;
-  --primary-light: #EEF2FF;
-  --secondary-color: #64748B;
+  --primary-color: #006666;
+  --primary-hover: #004d4d;
+  --primary-light: #e6f2f2;
+  --secondary-color: #66b2b2;
   --success-color: #10B981;
   --warning-color: #F59E0B;
   --danger-color: #EF4444;
