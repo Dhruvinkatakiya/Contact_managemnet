@@ -164,11 +164,21 @@ The application uses a professional teal color palette:
 - Client-side route protection
 - Request validation
 
+## 🚀 Deployment
+
+See [VERCEL_DEPLOY.md](./VERCEL_DEPLOY.md) for complete deployment instructions.
+
+**Quick Deploy:**
+- **Frontend**: Deploy to Vercel (auto-configured with `vercel.json`)
+- **Backend**: Deploy to Render or Railway
+- Connect them with environment variables
+
 ## ⚠️ Important Notes
 
 - **Data Storage**: Currently uses in-memory storage. Data will be lost when server restarts.
 - **Production**: For production use, integrate a database (MongoDB, PostgreSQL, etc.)
 - **Environment Variables**: Consider using .env files for sensitive configuration
+- **Deployment**: Frontend and backend need separate deployments (see VERCEL_DEPLOY.md)
 
 ## 🐛 Troubleshooting
 
