@@ -79,24 +79,26 @@ function ContactModal({ contact, onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Form submitted', { contact, formData });
 
     if (validateForm()) {
       try {
         if (contact) {
           console.log('Updating contact:', { id: contact.id, data: formData });
           const result = await dispatch(updateContact({ id: contact.id, data: formData })).unwrap();
-          console.log('Update result:', result);
+          console.log('Update successful:', result);
         } else {
           console.log('Adding contact:', formData);
           const result = await dispatch(addContact(formData)).unwrap();
-          console.log('Add result:', result);
+          console.log('Add successful:', result);
         }
         onClose();
       } catch (error) {
         console.error('Error saving contact:', error);
-        // Show error to user
         setErrors({ submit: error.message || 'Failed to save contact' });
       }
+    } else {
+      console.log('Validation failed:', errors);
     }
   };
 
@@ -245,13 +247,16 @@ function ContactModal({ contact, onClose }) {
           </div>
 
           {errors.submit && (
-            <div className="form-error-message">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M8 1.33334L1.33331 13.3333H14.6666L8 1.33334Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M8 6V8.66667" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                <path d="M8 11.3333H8.00667" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-              {errors.submit}
+            <div style={{
+              padding: '12px',
+              backgroundColor: '#fee2e2',
+              border: '1px solid #ef4444',
+              borderRadius: '8px',
+              color: '#dc2626',
+              fontSize: '14px',
+              marginTop: '16px'
+            }}>
+              ⚠️ {errors.submit}
             </div>
           )}
 

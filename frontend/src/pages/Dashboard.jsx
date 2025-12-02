@@ -374,9 +374,9 @@ function Dashboard() {
                       <td>
                         <div className="action-buttons">
                           <button
-                            className="btn-icon edit"
+                            className="action-button"
                             onClick={() => handleEditContact(contact)}
-                            title="Edit contact"
+                            title="Edit"
                           >
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path
@@ -389,9 +389,9 @@ function Dashboard() {
                             </svg>
                           </button>
                           <button
-                            className="btn-icon delete"
+                            className="action-button danger"
                             onClick={() => handleDeleteClick(contact)}
-                            title="Delete contact"
+                            title="Delete"
                           >
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path
