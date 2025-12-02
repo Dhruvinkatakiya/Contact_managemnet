@@ -1,0 +1,215 @@
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact, updateContact } from '../redux/slices/contactSlice';
+import '../styles/Modal.css';
+
+function ContactModal({ contact, onClose }) {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    contactNumber: '',
+    email: '',
+  });
+  const [errors, setErrors] = useState({});
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.contacts);
+
+  useEffect(() => {
+    if (contact) {
+      setFormData({
+        firstName: contact.firstName || '',
+        lastName: contact.lastName || '',
+        contactNumber: contact.contactNumber || '',
+        email: contact.email || '',
+      });
+    }
+  }, [contact]);
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    // First Name validation
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First name is required';
+    } else if (formData.firstName.trim().length < 2) {
+      newErrors.firstName = 'First name must be at least 2 characters';
+    }
+
+    // Last Name validation
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
+    } else if (formData.lastName.trim().length < 2) {
+      newErrors.lastName = 'Last name must be at least 2 characters';
+    }
+
+    // Contact Number validation
+    if (!formData.contactNumber.trim()) {
+      newErrors.contactNumber = 'Contact number is required';
+    } else if (!/^[0-9+\-\s()]+$/.test(formData.contactNumber)) {
+      newErrors.contactNumber = 'Please enter a valid contact number';
+    } else if (formData.contactNumber.replace(/[^0-9]/g, '').length < 10) {
+      newErrors.contactNumber = 'Contact number must be at least 10 digits';
+    }
+
+    // Email validation (optional)
+    if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    // Clear error for this field
+    if (errors[name]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: '',
+      }));
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+      try {
+        if (contact) {
+          await dispatch(updateContact({ id: contact.id, data: formData })).unwrap();
+        } else {
+          await dispatch(addContact(formData)).unwrap();
+        }
+        onClose();
+      } catch (error) {
+        console.error('Error saving contact:', error);
+      }
+    }
+  };
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-header">
+          <h2>{contact ? 'Edit Contact' : 'Add New Contact'}</h2>
+          <button onClick={onClose} className="modal-close">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="modal-form">
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="firstName">
+                First Name <span className="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                placeholder="Enter first name"
+                className={errors.firstName ? 'error' : ''}
+                disabled={isLoading}
+              />
+              {errors.firstName && (
+                <span className="field-error">{errors.firstName}</span>
+              )}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="lastName">
+                Last Name <span className="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                placeholder="Enter last name"
+                className={errors.lastName ? 'error' : ''}
+                disabled={isLoading}
+              />
+              {errors.lastName && (
+                <span className="field-error">{errors.lastName}</span>
+              )}
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="contactNumber">
+              Contact Number <span className="required">*</span>
+            </label>
+            <input
+              type="tel"
+              id="contactNumber"
+              name="contactNumber"
+              value={formData.contactNumber}
+              onChange={handleChange}
+              placeholder="Enter contact number"
+              className={errors.contactNumber ? 'error' : ''}
+              disabled={isLoading}
+            />
+            {errors.contactNumber && (
+              <span className="field-error">{errors.contactNumber}</span>
+            )}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="email">Email (Optional)</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter email address"
+              className={errors.email ? 'error' : ''}
+              disabled={isLoading}
+            />
+            {errors.email && <span className="field-error">{errors.email}</span>}
+          </div>
+
+          <div className="modal-actions">
+            <button
+              type="button"
+              onClick={onClose}
+              className="btn-secondary"
+              disabled={isLoading}
+            >
+              Cancel
+            </button>
+            <button type="submit" className="btn-primary" disabled={isLoading}>
+              {isLoading ? (
+                <span className="loading-spinner">Saving...</span>
+              ) : contact ? (
+                'Update Contact'
+              ) : (
+                'Add Contact'
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export default ContactModal;
