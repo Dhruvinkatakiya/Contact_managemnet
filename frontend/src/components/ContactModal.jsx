@@ -95,8 +95,37 @@ function ContactModal({ contact, onClose }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-icon-header primary">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            {contact ? (
+              <>
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+              </>
+            ) : (
+              <>
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="8.5" cy="7" r="4" />
+                <line x1="20" y1="8" x2="20" y2="14" />
+                <line x1="23" y1="11" x2="17" y2="11" />
+              </>
+            )}
+          </svg>
+        </div>
         <div className="modal-header">
           <h2>{contact ? 'Edit Contact' : 'Add New Contact'}</h2>
+          <p className="modal-subtitle">
+            {contact
+              ? 'Update contact information below'
+              : 'Fill in the details to add a new contact'}
+          </p>
           <button onClick={onClose} className="modal-close">
             <svg
               width="24"
