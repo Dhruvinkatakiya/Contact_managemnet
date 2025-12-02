@@ -1,29 +1,82 @@
 # Contact Management System
 
-A full-stack contact management application built with React, Redux, Node.js, and Express.
+A modern, full-stack contact management application built with React, Redux, Node.js, and Express. Features a professional teal-themed UI with complete CRUD operations, authentication, and real-time search functionality.
 
 ## 🚀 Features
 
-### Authentication
-- **User Signup**: Create new account with email and password
-- **User Login**: Secure JWT-based authentication
-- **Protected Routes**: Dashboard accessible only to authenticated users
-- **Session Persistence**: User stays logged in across browser sessions
-
-### Contact Management
-- **Add Contacts**: Create new contacts with first name, last name, phone number, and optional email
-- **Edit Contacts**: Update existing contact information
-- **Delete Contacts**: Remove contacts with confirmation dialog
-- **Search Functionality**: Real-time search across all contact fields
-- **Responsive UI**: Beautiful, modern interface that works on all devices
-
-### Technical Features
+- **User Authentication**: Secure login and signup with JWT tokens
+- **Contact Management**: Create, read, update, and delete contacts
+- **Real-time Search**: Instant contact filtering as you type
+- **Status Tracking**: Mark contacts as Active or Inactive
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Modern UI**: Clean, professional interface with teal color theme
 - **Form Validation**: Client-side and server-side validation
-- **Error Handling**: Comprehensive error messages and feedback
-- **Loading States**: User-friendly loading indicators
-- **Success Messages**: Confirmation for all CRUD operations
-- **Redux State Management**: Centralized state with Redux Toolkit
-- **RESTful API**: Well-structured backend API
+- **Error Handling**: User-friendly error messages and feedback
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React 18.2.0**: Modern UI library
+- **Redux Toolkit 2.0.1**: State management
+- **React Router DOM 6.20.0**: Client-side routing
+- **Axios 1.6.2**: HTTP client
+- **Vite 5.0.8**: Fast build tool and dev server
+
+### Backend
+- **Node.js**: JavaScript runtime
+- **Express 4.18.2**: Web application framework
+- **JWT 9.0.2**: Authentication tokens
+- **bcryptjs 2.4.3**: Password hashing
+- **express-validator 7.0.1**: Request validation
+- **CORS 2.8.5**: Cross-origin resource sharing
+
+## 📋 Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+
+## 🔧 Installation
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/Dhruvinkatakiya/Contact_managemnet.git
+cd Contact_managemnet
+```
+
+### 2. Install Backend Dependencies
+```bash
+cd backend
+npm install
+```
+
+### 3. Install Frontend Dependencies
+```bash
+cd ../frontend
+npm install
+```
+
+## 🚦 Running the Application
+
+### Start Backend Server
+```bash
+cd backend
+npm start
+```
+Backend will run on: `http://localhost:5001`
+
+### Start Frontend Development Server
+```bash
+cd frontend
+npm run dev
+```
+Frontend will run on: `http://localhost:5173` (or next available port)
+
+## 🔐 Default Login Credentials
+
+```
+Email: admin@example.com
+Password: admin123
+```
 
 ## 📁 Project Structure
 
@@ -31,111 +84,54 @@ A full-stack contact management application built with React, Redux, Node.js, an
 Contact_managemnet/
 ├── backend/
 │   ├── data/
-│   │   └── store.js          # In-memory data store
+│   │   └── store.js           # In-memory data storage
 │   ├── middleware/
-│   │   └── auth.js           # JWT authentication middleware
+│   │   └── auth.js             # JWT authentication middleware
 │   ├── routes/
-│   │   ├── auth.js           # Authentication routes
-│   │   └── contacts.js       # Contact CRUD routes
+│   │   ├── auth.js             # Authentication routes
+│   │   └── contacts.js         # Contact CRUD routes
 │   ├── package.json
-│   └── server.js             # Express server setup
+│   └── server.js               # Express server setup
 │
-└── frontend/
-    ├── src/
-    │   ├── api/
-    │   │   └── axios.js      # Axios configuration
-    │   ├── components/
-    │   │   ├── ContactModal.jsx
-    │   │   ├── DeleteConfirmModal.jsx
-    │   │   ├── LogoutConfirmModal.jsx
-    │   │   └── PrivateRoute.jsx
-    │   ├── pages/
-    │   │   ├── Dashboard.jsx
-    │   │   ├── Login.jsx
-    │   │   └── Signup.jsx
-    │   ├── redux/
-    │   │   ├── slices/
-    │   │   │   ├── authSlice.js
-    │   │   │   └── contactSlice.js
-    │   │   └── store.js
-    │   ├── styles/
-    │   │   ├── Auth.css
-    │   │   ├── Dashboard.css
-    │   │   ├── Modal.css
-    │   │   └── index.css
-    │   ├── App.jsx
-    │   └── main.jsx
-    ├── index.html
-    ├── package.json
-    └── vite.config.js
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   │   └── axios.js        # API configuration
+│   │   ├── components/
+│   │   │   ├── ContactModal.jsx
+│   │   │   ├── DeleteConfirmModal.jsx
+│   │   │   ├── LogoutConfirmModal.jsx
+│   │   │   └── PrivateRoute.jsx
+│   │   ├── pages/
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Login.jsx
+│   │   │   └── Signup.jsx
+│   │   ├── redux/
+│   │   │   ├── slices/
+│   │   │   │   ├── authSlice.js
+│   │   │   │   └── contactSlice.js
+│   │   │   └── store.js
+│   │   ├── styles/
+│   │   │   ├── Auth.css
+│   │   │   ├── Dashboard.css
+│   │   │   ├── Modal.css
+│   │   │   └── index.css
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── package.json
+│   └── vite.config.js
+│
+└── README.md
 ```
 
-## 🛠️ Technologies Used
-
-### Frontend
-- **React 18**: UI library
-- **Redux Toolkit**: State management
-- **React Router DOM**: Routing
-- **Axios**: HTTP client
-- **Vite**: Build tool and dev server
-
-### Backend
-- **Node.js**: Runtime environment
-- **Express**: Web framework
-- **JSON Web Tokens (JWT)**: Authentication
-- **bcryptjs**: Password hashing
-- **express-validator**: Input validation
-- **CORS**: Cross-origin resource sharing
-
-## 📦 Installation
-
-### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn
-
-### Setup Instructions
-
-1. **Clone the repository**
-   ```bash
-   cd Contact_managemnet
-   ```
-
-2. **Install Backend Dependencies**
-   ```bash
-   cd backend
-   npm install
-   ```
-
-3. **Install Frontend Dependencies**
-   ```bash
-   cd ../frontend
-   npm install
-   ```
-
-## 🚀 Running the Application
-
-### Start Backend Server
-```bash
-cd backend
-npm start
-```
-The backend server will run on `http://localhost:5001`
-
-### Start Frontend Development Server
-```bash
-cd frontend
-npm run dev
-```
-The frontend will run on `http://localhost:5173`
-
-## 📝 API Endpoints
+## 🔌 API Endpoints
 
 ### Authentication
 - `POST /api/auth/signup` - Register new user
-- `POST /api/auth/login` - Login user
+- `POST /api/auth/login` - User login
 - `GET /api/auth/verify` - Verify JWT token
 
-### Contacts (Protected)
+### Contacts (Protected Routes)
 - `GET /api/contacts` - Get all contacts
 - `GET /api/contacts?search=term` - Search contacts
 - `GET /api/contacts/:id` - Get single contact
@@ -143,79 +139,62 @@ The frontend will run on `http://localhost:5173`
 - `PUT /api/contacts/:id` - Update contact
 - `DELETE /api/contacts/:id` - Delete contact
 
-## 🔐 Authentication Flow
+## 🎨 Color Theme
 
-1. User signs up or logs in
-2. Server generates JWT token
-3. Token stored in localStorage
-4. Token sent with all API requests via Authorization header
-5. Backend validates token for protected routes
+The application uses a professional teal color palette:
+- **Primary**: #006666
+- **Primary Hover**: #004d4d
+- **Primary Light**: #e6f2f2
+- **Secondary**: #66b2b2
 
-## 💾 Data Storage
+## 📝 Contact Fields
 
-Currently using **in-memory storage** for simplicity. Data will be lost when server restarts. For production, integrate with a database like:
-- MongoDB
-- PostgreSQL
-- MySQL
-
-## 🎨 UI Features
-
-- **Modern Design**: Clean, professional interface
-- **Responsive Layout**: Works on desktop, tablet, and mobile
-- **Gradient Backgrounds**: Eye-catching authentication pages
-- **Smooth Animations**: Transitions and loading states
-- **Icon Integration**: SVG icons for better UX
-- **Form Validation**: Real-time feedback on user input
-- **Modal Dialogs**: For add/edit/delete operations
+- First Name (required)
+- Last Name (required)
+- Contact Number (required, minimum 10 digits)
+- Email (optional, validated format)
+- Status (Active/Inactive)
 
 ## 🔒 Security Features
 
-- Password hashing with bcrypt
 - JWT-based authentication
+- Password hashing with bcrypt
 - Protected API routes
-- Input validation and sanitization
-- CORS configuration
-- XSS protection
+- HTTP-only token storage
+- Client-side route protection
+- Request validation
 
-## 🎯 React Fundamentals Used
+## ⚠️ Important Notes
 
-- **Functional Components**: Modern React with hooks
-- **useState**: Local component state
-- **useEffect**: Side effects and lifecycle
-- **useDispatch & useSelector**: Redux hooks
-- **React Router**: Navigation and protected routes
-- **Controlled Components**: Form handling
-- **Event Handling**: User interactions
-- **Conditional Rendering**: Dynamic UI
-- **Component Composition**: Reusable components
+- **Data Storage**: Currently uses in-memory storage. Data will be lost when server restarts.
+- **Production**: For production use, integrate a database (MongoDB, PostgreSQL, etc.)
+- **Environment Variables**: Consider using .env files for sensitive configuration
 
-## 🎓 Learning Highlights
+## 🐛 Troubleshooting
 
-This project demonstrates:
-- Full-stack JavaScript development
-- RESTful API design
-- State management with Redux
-- Form validation
-- Authentication & authorization
-- Responsive design
-- Modern React patterns
-- Error handling
-- User experience design
+### Backend not connecting
+- Ensure backend is running on port 5001
+- Check if port is already in use: `lsof -ti:5001`
+
+### Frontend not loading
+- Clear browser cache and localStorage
+- Check console for errors
+- Verify backend API URL in `frontend/src/api/axios.js`
+
+### Authentication issues
+- Clear localStorage and try logging in again
+- Verify JWT token is being sent with requests
+- Check backend console for authentication errors
+
+## 👨‍💻 Developer
+
+**Dhruvin Katakiya**
+- GitHub: [@Dhruvinkatakiya](https://github.com/Dhruvinkatakiya)
 
 ## 📄 License
 
-This project is created for educational purposes.
-
-## 👨‍💻 Author
-
-Created as an internship assignment demonstrating full-stack development skills.
+This project is open source and available for personal and educational use.
 
 ---
 
-**Note**: This is a demonstration project. For production use, implement:
-- Persistent database
-- Environment variables
-- Rate limiting
-- Enhanced security measures
-- Unit and integration tests
-- CI/CD pipeline
+**Made with ❤️ for interview demonstration**
