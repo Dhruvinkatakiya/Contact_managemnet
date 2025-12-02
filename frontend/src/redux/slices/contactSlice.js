@@ -40,9 +40,9 @@ export const addContact = createAsyncThunk(
 
 export const updateContact = createAsyncThunk(
   'contacts/update',
-  async ({ id, contactData }, { rejectWithValue }) => {
+  async ({ id, data }, { rejectWithValue }) => {
     try {
-      const response = await api.put(`/contacts/${id}`, contactData);
+      const response = await api.put(`/contacts/${id}`, data);
       return enrichContact(response.data.data.contact);
     } catch (error) {
       return rejectWithValue(

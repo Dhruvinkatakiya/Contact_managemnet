@@ -66,11 +66,11 @@ function Dashboard() {
     }
   };
 
-  const handleSaveContact = async (contactData) => {
+  const handleSaveContact = async (data) => {
     if (selectedContact) {
-      await dispatch(updateContact({ id: selectedContact.id, contactData }));
+      await dispatch(updateContact({ id: selectedContact.id, data }));
     } else {
-      await dispatch(addContact(contactData));
+      await dispatch(addContact(data));
     }
     setIsModalOpen(false);
     setSelectedContact(null);
@@ -374,9 +374,9 @@ function Dashboard() {
                       <td>
                         <div className="action-buttons">
                           <button
-                            className="action-button"
+                            className="btn-icon edit"
                             onClick={() => handleEditContact(contact)}
-                            title="Edit"
+                            title="Edit contact"
                           >
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path
@@ -389,9 +389,9 @@ function Dashboard() {
                             </svg>
                           </button>
                           <button
-                            className="action-button danger"
+                            className="btn-icon delete"
                             onClick={() => handleDeleteClick(contact)}
-                            title="Delete"
+                            title="Delete contact"
                           >
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path
@@ -422,7 +422,6 @@ function Dashboard() {
             setIsModalOpen(false);
             setSelectedContact(null);
           }}
-          onSave={handleSaveContact}
         />
       )}
 
