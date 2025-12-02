@@ -13,7 +13,7 @@ function ContactModal({ contact, onClose }) {
   });
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.contacts);
+  const { loading } = useSelector((state) => state.contacts);
 
   useEffect(() => {
     if (contact) {
@@ -83,13 +83,19 @@ function ContactModal({ contact, onClose }) {
     if (validateForm()) {
       try {
         if (contact) {
-          await dispatch(updateContact({ id: contact.id, data: formData })).unwrap();
+          console.log('Updating contact:', { id: contact.id, data: formData });
+          const result = await dispatch(updateContact({ id: contact.id, data: formData })).unwrap();
+          console.log('Update result:', result);
         } else {
-          await dispatch(addContact(formData)).unwrap();
+          console.log('Adding contact:', formData);
+          const result = await dispatch(addContact(formData)).unwrap();
+          console.log('Add result:', result);
         }
         onClose();
       } catch (error) {
         console.error('Error saving contact:', error);
+        // Show error to user
+        setErrors({ submit: error.message || 'Failed to save contact' });
       }
     }
   };
@@ -159,7 +165,7 @@ function ContactModal({ contact, onClose }) {
                 onChange={handleChange}
                 placeholder="Enter first name"
                 className={errors.firstName ? 'error' : ''}
-                disabled={isLoading}
+                disabled={loading}
               />
               {errors.firstName && (
                 <span className="field-error">{errors.firstName}</span>
@@ -178,7 +184,7 @@ function ContactModal({ contact, onClose }) {
                 onChange={handleChange}
                 placeholder="Enter last name"
                 className={errors.lastName ? 'error' : ''}
-                disabled={isLoading}
+                disabled={loading}
               />
               {errors.lastName && (
                 <span className="field-error">{errors.lastName}</span>
@@ -198,7 +204,7 @@ function ContactModal({ contact, onClose }) {
               onChange={handleChange}
               placeholder="Enter contact number"
               className={errors.contactNumber ? 'error' : ''}
-              disabled={isLoading}
+              disabled={loading}
             />
             {errors.contactNumber && (
               <span className="field-error">{errors.contactNumber}</span>
@@ -215,7 +221,7 @@ function ContactModal({ contact, onClose }) {
               onChange={handleChange}
               placeholder="Enter email address"
               className={errors.email ? 'error' : ''}
-              disabled={isLoading}
+              disabled={loading}
             />
             {errors.email && <span className="field-error">{errors.email}</span>}
           </div>
@@ -230,7 +236,7 @@ function ContactModal({ contact, onClose }) {
               value={formData.status}
               onChange={handleChange}
               className={errors.status ? 'error' : ''}
-              disabled={isLoading}
+              disabled={loading}
             >
               <option value="Active">Active</option>
               <option value="Inactive">Inactive</option>
@@ -238,17 +244,28 @@ function ContactModal({ contact, onClose }) {
             {errors.status && <span className="field-error">{errors.status}</span>}
           </div>
 
+          {errors.submit && (
+            <div className="form-error-message">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 1.33334L1.33331 13.3333H14.6666L8 1.33334Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M8 6V8.66667" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M8 11.3333H8.00667" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+              {errors.submit}
+            </div>
+          )}
+
           <div className="modal-actions">
             <button
               type="button"
               onClick={onClose}
               className="btn-secondary"
-              disabled={isLoading}
+              disabled={loading}
             >
               Cancel
             </button>
-            <button type="submit" className="btn-primary" disabled={isLoading}>
-              {isLoading ? (
+            <button type="submit" className="btn-primary" disabled={loading}>
+              {loading ? (
                 <span className="loading-spinner">Saving...</span>
               ) : contact ? (
                 'Update Contact'

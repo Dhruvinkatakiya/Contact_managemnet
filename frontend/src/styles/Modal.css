@@ -294,6 +294,25 @@
   margin-left: 2px;
 }
 
+.form-error-message {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--danger-color);
+  border-radius: var(--radius-md);
+  color: var(--danger-color);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  margin-top: var(--spacing-lg);
+  animation: slideDown 0.3s ease-out;
+}
+
+.form-error-message svg {
+  flex-shrink: 0;
+}
+
 .modal-form select {
   cursor: pointer;
   appearance: none;
