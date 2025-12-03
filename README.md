@@ -71,12 +71,6 @@ npm run dev
 ```
 Frontend will run on: `http://localhost:5173` (or next available port)
 
-## 🔐 Default Login Credentials
-
-```
-Email: admin@example.com
-Password: admin123
-```
 
 ## 📁 Project Structure
 
