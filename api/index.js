@@ -14,11 +14,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes - remove /api prefix since Vercel already routes to /api
-app.use('/auth', authRoutes);
-app.use('/contacts', contactRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/contacts', contactRoutes);
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'OK', 
     message: 'Contact Management API is running',
@@ -27,10 +27,18 @@ app.get('/health', (req, res) => {
 });
 
 // Root API endpoint
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.json({ 
     message: 'Contact Management API',
-    endpoints: ['/auth', '/contacts']
+    endpoints: ['/api/auth', '/api/contacts']
+  });
+});
+
+// Catch all for /api routes
+app.all('/api/*', (req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'API endpoint not found'
   });
 });
 
@@ -43,5 +51,5 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Export for Vercel serverless function
+// Export handler for Vercel
 export default app;
