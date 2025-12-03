@@ -52,7 +52,6 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
-  transition: all 0.2s;
   cursor: pointer;
 }
 
@@ -96,7 +95,6 @@
   border-radius: 8px;
   background-color: #f7f8fa;
   border: 1px solid #e4e7eb;
-  transition: background 0.2s;
 }
 
 .sidebar-user:hover {
@@ -150,7 +148,6 @@
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  transition: all 0.2s;
 }
 
 .user-menu:hover {
@@ -255,12 +252,10 @@
   border: 1px solid #e4e7eb;
   border-radius: 12px;
   padding: 24px;
-  transition: all 0.2s;
 }
 
 .stat-card:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-  transform: translateY(-2px);
 }
 
 .stat-header {

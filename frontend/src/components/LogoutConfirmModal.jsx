@@ -9,8 +9,8 @@ function LogoutConfirmModal({ isOpen, onConfirm, onClose }) {
         <div className="modal-icon-header warning">
           <div className="modal-icon-circle">
             <svg
-              width="48"
-              height="48"
+              width="32"
+              height="32"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

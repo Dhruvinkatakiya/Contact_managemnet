@@ -21,8 +21,8 @@ function DeleteConfirmModal({ contact, onClose }) {
         <div className="modal-icon-header danger">
           <div className="modal-icon-circle">
             <svg
-              width="56"
-              height="56"
+              width="32"
+              height="32"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

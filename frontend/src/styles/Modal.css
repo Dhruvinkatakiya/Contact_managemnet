@@ -12,18 +12,6 @@
   justify-content: center;
   z-index: 1000;
   padding: var(--spacing-lg);
-  animation: fadeIn 0.3s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    backdrop-filter: blur(0px);
-  }
-  to {
-    opacity: 1;
-    backdrop-filter: blur(4px);
-  }
 }
 
 /* Modal Content */
@@ -35,7 +23,6 @@
   max-width: 520px;
   max-height: 90vh;
   overflow-y: auto;
-  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -43,20 +30,9 @@
   max-width: 440px;
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.92);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
 /* Modal Header */
 .modal-header {
-  padding: var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-lg);
   border-bottom: 1px solid var(--gray-200);
   position: relative;
 }
@@ -68,10 +44,10 @@
 }
 
 .modal-header h2 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
   font-weight: 700;
   color: var(--gray-900);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
 }
 
 .modal-header p {
@@ -81,9 +57,9 @@
 }
 
 .modal-subtitle {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: var(--gray-500);
-  margin-top: var(--spacing-xs);
+  margin-top: 0;
   font-weight: 400;
 }
 
@@ -95,7 +71,6 @@
   background-color: transparent;
   color: var(--gray-400);
   border-radius: var(--radius-md);
-  transition: all var(--transition-base);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,11 +79,10 @@
 .modal-close:hover {
   background-color: var(--gray-100);
   color: var(--gray-700);
-  transform: rotate(90deg);
 }
 
 .modal-close:active {
-  transform: rotate(90deg) scale(0.95);
+  background-color: var(--gray-200);
 }
 
 /* Modal Icon Header (for confirmation modals) */
@@ -116,7 +90,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md) var(--spacing-xs);
 }
 
 .modal-icon-circle {
@@ -124,9 +98,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-sm);
   border-radius: var(--radius-full);
-  animation: iconPulse 0.5s ease-out;
 }
 
 .modal-icon-circle::before {
@@ -137,40 +110,6 @@
   border-radius: var(--radius-full);
   background: currentColor;
   opacity: 0.15;
-  animation: ripple 2s ease-out infinite;
-}
-
-@keyframes iconPulse {
-  0% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes ripple {
-  0% {
-    transform: scale(1);
-    opacity: 0.2;
-  }
-  100% {
-    transform: scale(1.4);
-    opacity: 0;
-  }
-}
-
-.modal-icon-header svg {
-  transition: transform var(--transition-base);
-}
-
-.modal-icon-header:hover .modal-icon-circle {
-  transform: scale(1.05);
 }
 
 .modal-icon-header.danger .modal-icon-circle {
@@ -205,7 +144,7 @@
 
 /* Modal Form */
 .modal-form {
-  padding: var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-lg);
 }
 
 .form-row {
@@ -215,18 +154,45 @@
 }
 
 .modal-form .form-group {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 .modal-form .form-group:last-of-type {
   margin-bottom: 0;
 }
 
+/* Select Wrapper */
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: '';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--gray-500);
+  pointer-events: none;
+}
+
+.select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  padding-right: 2.5rem;
+}
+
 /* Modal Actions */
 .modal-actions {
   display: flex;
   gap: var(--spacing-md);
-  padding: var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-lg);
   border-top: 1px solid var(--gray-200);
   background: linear-gradient(to bottom, var(--white) 0%, var(--gray-50) 100%);
   border-bottom-left-radius: var(--radius-xl);
@@ -242,6 +208,15 @@
   padding: 0.75rem 1.5rem;
   font-size: var(--font-size-base);
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.modal-actions button svg {
+  width: 18px;
+  height: 18px;
 }
 
 /* Responsive Design */
