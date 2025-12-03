@@ -32,7 +32,6 @@ function ContactModal({ contact = null, onClose }) {
     }
   }, [contact, isEdit]);
 
-  // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -44,9 +43,6 @@ function ContactModal({ contact = null, onClose }) {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  // --------------------
-  // VALIDATION
-  // --------------------
   const validateField = (name, value) => {
     let error = '';
 
@@ -91,7 +87,6 @@ function ContactModal({ contact = null, onClose }) {
     newErrors.contactNumber = validateField('contactNumber', formData.contactNumber);
     newErrors.email = validateField('email', formData.email);
 
-    // Remove empty errors
     Object.keys(newErrors).forEach(key => {
       if (!newErrors[key]) delete newErrors[key];
     });
@@ -100,14 +95,10 @@ function ContactModal({ contact = null, onClose }) {
     return Object.keys(newErrors).length === 0;
   };
 
-  // --------------------
-  // HANDLERS
-  // --------------------
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Real-time validation for touched fields
     if (touched[name]) {
       const error = validateField(name, value);
       setErrors((prev) => ({
@@ -121,7 +112,6 @@ function ContactModal({ contact = null, onClose }) {
     const { name, value } = e.target;
     setTouched((prev) => ({ ...prev, [name]: true }));
     
-    // Validate on blur
     const error = validateField(name, value);
     setErrors((prev) => ({
       ...prev,
@@ -138,7 +128,6 @@ function ContactModal({ contact = null, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Mark all fields as touched on submit
     setTouched({
       firstName: true,
       lastName: true,
@@ -154,12 +143,10 @@ function ContactModal({ contact = null, onClose }) {
       } else {
         await dispatch(addContact(formData)).unwrap();
       }
-      // Close modal on success
       onClose();
     } catch (err) {
       console.error('Contact save error:', err);
       
-      // Handle validation errors from backend
       let errorMessage = 'Failed to save contact';
       
       if (typeof err === 'string') {
@@ -174,9 +161,6 @@ function ContactModal({ contact = null, onClose }) {
     }
   };
 
-  // --------------------
-  // RENDERING
-  // --------------------
   return (
     <div className="modal-overlay" onClick={handleOverlayClick}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>

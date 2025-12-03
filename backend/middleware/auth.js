@@ -2,11 +2,10 @@ import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production-2024';
 
-// Middleware to verify JWT token
 export const authenticateToken = (req, res, next) => {
   try {
     const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+    const token = authHeader && authHeader.split(' ')[1];
 
     if (!token) {
       return res.status(401).json({
@@ -29,7 +28,6 @@ export const authenticateToken = (req, res, next) => {
         });
       }
 
-      // Attach user info to request object
       req.user = {
         userId: decoded.userId,
         email: decoded.email
@@ -45,7 +43,6 @@ export const authenticateToken = (req, res, next) => {
   }
 };
 
-// Generate JWT token
 export const generateToken = (userId, email) => {
   return jwt.sign(
     { userId, email },

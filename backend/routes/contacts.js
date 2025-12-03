@@ -5,10 +5,8 @@ import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Apply authentication middleware to all routes
 router.use(authenticateToken);
 
-// Validation middleware for contacts
 const validateContact = [
   body('firstName')
     .trim()
@@ -41,9 +39,6 @@ const validateContact = [
     .withMessage('Status must be either Active or Inactive')
 ];
 
-// @route   GET /api/contacts
-// @desc    Get all contacts for logged-in user
-// @access  Private
 router.get('/', (req, res) => {
   try {
     const { search } = req.query;
@@ -71,9 +66,6 @@ router.get('/', (req, res) => {
   }
 });
 
-// @route   GET /api/contacts/:id
-// @desc    Get a specific contact by ID
-// @access  Private
 router.get('/:id', (req, res) => {
   try {
     const contact = dataStore.getContactById(req.user.userId, req.params.id);
@@ -98,12 +90,8 @@ router.get('/:id', (req, res) => {
   }
 });
 
-// @route   POST /api/contacts
-// @desc    Create a new contact
-// @access  Private
 router.post('/', validateContact, (req, res) => {
   try {
-    // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -137,12 +125,8 @@ router.post('/', validateContact, (req, res) => {
   }
 });
 
-// @route   PUT /api/contacts/:id
-// @desc    Update a contact
-// @access  Private
 router.put('/:id', validateContact, (req, res) => {
   try {
-    // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -181,9 +165,6 @@ router.put('/:id', validateContact, (req, res) => {
   }
 });
 
-// @route   DELETE /api/contacts/:id
-// @desc    Delete a contact
-// @access  Private
 router.delete('/:id', (req, res) => {
   try {
     const deleted = dataStore.deleteContact(req.user.userId, req.params.id);

@@ -6,7 +6,6 @@ import { generateToken, authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Validation middleware
 const validateSignup = [
   body('email')
     .isEmail()
@@ -27,12 +26,8 @@ const validateLogin = [
     .withMessage('Password is required')
 ];
 
-// @route   POST /api/auth/signup
-// @desc    Register a new user
-// @access  Public
 router.post('/signup', validateSignup, async (req, res) => {
   try {
-    // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -44,7 +39,6 @@ router.post('/signup', validateSignup, async (req, res) => {
 
     const { email, password } = req.body;
 
-    // Check if user already exists
     const existingUser = dataStore.getUserByEmail(email);
     if (existingUser) {
       return res.status(400).json({
@@ -53,17 +47,14 @@ router.post('/signup', validateSignup, async (req, res) => {
       });
     }
 
-    // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create user
     const user = dataStore.createUser({
       email,
       password: hashedPassword
     });
 
-    // Generate token
     const token = generateToken(user.id, user.email);
 
     res.status(201).json({
@@ -86,12 +77,8 @@ router.post('/signup', validateSignup, async (req, res) => {
   }
 });
 
-// @route   POST /api/auth/login
-// @desc    Authenticate user and get token
-// @access  Public
 router.post('/login', validateLogin, async (req, res) => {
   try {
-    // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -103,7 +90,6 @@ router.post('/login', validateLogin, async (req, res) => {
 
     const { email, password } = req.body;
 
-    // Check if user exists
     const user = dataStore.getUserByEmail(email);
     if (!user) {
       return res.status(401).json({
@@ -112,7 +98,6 @@ router.post('/login', validateLogin, async (req, res) => {
       });
     }
 
-    // Verify password
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({
@@ -121,7 +106,6 @@ router.post('/login', validateLogin, async (req, res) => {
       });
     }
 
-    // Generate token
     const token = generateToken(user.id, user.email);
 
     res.json({
@@ -144,9 +128,6 @@ router.post('/login', validateLogin, async (req, res) => {
   }
 });
 
-// @route   GET /api/auth/verify
-// @desc    Verify token and get user info
-// @access  Private
 router.get('/verify', authenticateToken, (req, res) => {
   try {
     const user = dataStore.getUserByEmail(req.user.email);

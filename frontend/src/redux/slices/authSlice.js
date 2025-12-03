@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../api/axios';
 
-// Async thunks for API calls
 export const login = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
@@ -9,7 +8,6 @@ export const login = createAsyncThunk(
       const response = await api.post('/auth/login', credentials);
       const { token, user } = response.data.data;
       
-      // Store token and user in localStorage
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       
@@ -29,7 +27,6 @@ export const signup = createAsyncThunk(
       const response = await api.post('/auth/signup', credentials);
       const { token, user } = response.data.data;
       
-      // Store token and user in localStorage
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       
@@ -56,7 +53,6 @@ export const verifyToken = createAsyncThunk(
   }
 );
 
-// Initial state
 const initialState = {
   user: JSON.parse(localStorage.getItem('user')) || null,
   token: localStorage.getItem('token') || null,
@@ -65,7 +61,6 @@ const initialState = {
   error: null,
 };
 
-// Auth slice
 const authSlice = createSlice({
   name: 'auth',
   initialState,
