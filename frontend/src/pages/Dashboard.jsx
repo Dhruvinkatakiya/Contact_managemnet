@@ -251,13 +251,7 @@ function Dashboard() {
             </div>
             <div className="stat-value">{stats.active}</div>
             <div className="stat-footer">
-              <span className="stat-change positive">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M6 10V2M6 2L2 6M6 2L10 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                +5%
-              </span>
-              <span className="stat-label">engagement</span>
+              
             </div>
           </div>
         </div>
