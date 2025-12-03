@@ -24,10 +24,16 @@ const validateContact = [
     .trim()
     .notEmpty()
     .withMessage('Contact number is required')
-    .matches(/^[0-9+\-\s()]+$/)
-    .withMessage('Please provide a valid contact number')
-    .isLength({ min: 10, max: 15 })
-    .withMessage('Contact number must be between 10 and 15 characters'),
+    .custom((value) => {
+      const digits = value.replace(/\D/g, '');
+      if (digits.length === 10 && /^[6-9][0-9]{9}$/.test(digits)) {
+        return true;
+      }
+      if (digits.length === 12 && /^91[6-9][0-9]{9}$/.test(digits)) {
+        return true;
+      }
+      throw new Error('Please provide a valid Indian mobile number (10 digits or +91 followed by 10 digits)');
+    }),
   body('email')
     .optional()
     .isEmail()

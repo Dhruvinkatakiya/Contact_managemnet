@@ -56,14 +56,18 @@ function ContactModal({ contact = null, onClose }) {
       case 'contactNumber':
         if (!value.trim()) {
           error = 'Contact number is required';
-        } else if (!/^[0-9+\-\s()]+$/.test(value)) {
-          error = 'Invalid contact number format';
         } else {
-          const digitCount = value.replace(/\D/g, '').length;
-          if (digitCount < 10) {
-            error = 'Must be at least 10 digits';
-          } else if (value.length > 15) {
-            error = 'Contact number too long (max 15 characters)';
+          const digits = value.replace(/\D/g, '');
+          if (digits.length === 10) {
+            if (!/^[6-9][0-9]{9}$/.test(digits)) {
+              error = 'Invalid Indian mobile number';
+            }
+          } else if (digits.length === 12) {
+            if (!/^91[6-9][0-9]{9}$/.test(digits)) {
+              error = 'Invalid format. Use +91 followed by 10 digits';
+            }
+          } else {
+            error = 'Must be 10 digits or +91 followed by 10 digits';
           }
         }
         break;
@@ -245,17 +249,31 @@ function ContactModal({ contact = null, onClose }) {
             <label htmlFor="contactNumber">
               Contact Number <span className="required">*</span>
             </label>
-            <input
-              type="tel"
-              id="contactNumber"
-              name="contactNumber"
-              placeholder="+1 (234) 567-890"
-              value={formData.contactNumber}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              disabled={loading}
-              className={errors.contactNumber && touched.contactNumber ? 'error' : ''}
-            />
+            <div style={{ position: 'relative' }}>
+              <span style={{ 
+                position: 'absolute', 
+                left: '12px', 
+                top: '50%', 
+                transform: 'translateY(-50%)', 
+                color: '#6f767e',
+                pointerEvents: 'none',
+                fontSize: '14px'
+              }}>
+                +91
+              </span>
+              <input
+                type="tel"
+                id="contactNumber"
+                name="contactNumber"
+                placeholder="9876543210"
+                value={formData.contactNumber}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                disabled={loading}
+                style={{ paddingLeft: '45px' }}
+                className={errors.contactNumber && touched.contactNumber ? 'error' : ''}
+              />
+            </div>
             {errors.contactNumber && touched.contactNumber && (
               <span className="field-error">{errors.contactNumber}</span>
             )}
