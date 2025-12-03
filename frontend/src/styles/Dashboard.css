@@ -193,7 +193,6 @@
   border: 1px solid #e4e7eb;
   border-radius: 8px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  transition: all 0.2s;
   cursor: pointer;
 }
 
@@ -374,7 +373,6 @@
   font-size: 14px;
   border: 1px solid #e4e7eb;
   border-radius: 8px;
-  transition: all 0.2s;
   background: #f7f8fa;
 }
 
@@ -399,7 +397,6 @@
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  transition: all 0.2s;
 }
 
 .search-clear:hover {
@@ -436,7 +433,6 @@
 
 .contacts-table tbody tr {
   border-bottom: 1px solid #e4e7eb;
-  transition: background 0.15s;
 }
 
 .contacts-table tbody tr:hover {
@@ -511,39 +507,56 @@
 .action-buttons {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
-.btn-icon {
-  width: 32px;
-  height: 32px;
+.action-button {
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: none;
+  background: transparent;
   border: 1px solid #e4e7eb;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   color: #6f767e;
-  transition: all 0.2s;
+  padding: 0;
 }
 
-.btn-icon:hover {
+.action-button svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+}
+
+.action-button:hover {
   background-color: #f7f8fa;
   border-color: #d1d5db;
   color: #1a1d1f;
 }
 
-.btn-icon.edit:hover {
-  background-color: var(--primary-light);
-  border-color: var(--primary-color);
-  color: var(--primary-color);
+.action-button:not(.danger):hover {
+  background-color: #e6f2f2;
+  border-color: #006666;
+  color: #006666;
 }
 
-.btn-icon.delete:hover {
+.action-button.danger:hover {
   background-color: #fef2f2;
   border-color: #ef4444;
   color: #ef4444;
+}
+
+.action-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.action-button:disabled:hover {
+  background: transparent;
+  border-color: #e4e7eb;
+  color: #6f767e;
 }
 
 /* Empty State */

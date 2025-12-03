@@ -32,7 +32,7 @@ function LogoutConfirmModal({ isOpen, onConfirm, onClose }) {
           <button type="button" onClick={onClose} className="btn-secondary">
             Cancel
           </button>
-          <button onClick={onConfirm} className="btn-danger">
+          <button onClick={onConfirm} className="btn-warning">
             Logout
           </button>
         </div>

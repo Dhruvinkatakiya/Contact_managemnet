@@ -176,6 +176,32 @@ button {
   cursor: not-allowed;
 }
 
+
+
+.btn-warning {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: 0.625rem 1.25rem;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--white);
+  background-color: var(--warning-color);
+  border-radius: var(--radius-md);
+}
+
+.btn-warning:hover:not(:disabled) {
+  background-color: var(--warning-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-warning:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
 /* Form Styles */
 .form-group {
   margin-bottom: var(--spacing-lg);
