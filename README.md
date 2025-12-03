@@ -168,10 +168,16 @@ The application uses a professional teal color palette:
 
 See [VERCEL_DEPLOY.md](./VERCEL_DEPLOY.md) for complete deployment instructions.
 
-**Quick Deploy:**
-- **Frontend**: Deploy to Vercel (auto-configured with `vercel.json`)
-- **Backend**: Deploy to Render or Railway
-- Connect them with environment variables
+**Quick Deploy to Vercel (All-in-One):**
+
+1. Push your code to GitHub
+2. Import project to Vercel
+3. Add environment variable: `JWT_SECRET=your-secret-key`
+4. Deploy!
+
+Your app will be live with both frontend and backend on the same domain:
+- Frontend: `https://your-app.vercel.app`
+- Backend API: `https://your-app.vercel.app/api`
 
 ## ⚠️ Important Notes
 

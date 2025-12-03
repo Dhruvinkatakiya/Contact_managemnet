@@ -1,0 +1,22 @@
+{
+  "name": "contact-management-system",
+  "version": "1.0.0",
+  "description": "Full-stack Contact Management System",
+  "type": "module",
+  "scripts": {
+    "install:all": "npm install && cd api && npm install && cd ../frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev"
+  },
+  "keywords": ["contact", "management", "fullstack"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "express-validator": "^7.0.1"
+  }
+}
