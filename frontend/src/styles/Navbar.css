@@ -65,12 +65,12 @@
 
 .btn-signup {
   color: white;
-  background: #14b8a6;
+  background: #006666;
   border: none;
 }
 
 .btn-signup:hover {
-  background: #0d9488;
+  background: #004d4d;
 }
 
 @media (max-width: 768px) {

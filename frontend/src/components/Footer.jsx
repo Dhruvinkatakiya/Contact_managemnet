@@ -9,7 +9,6 @@ function Footer() {
         <div className="footer-content">
           <div className="footer-section">
             <h3 className="footer-logo">
-              <span className="logo-icon">📇</span>
               ContactHub
             </h3>
             <p className="footer-description">

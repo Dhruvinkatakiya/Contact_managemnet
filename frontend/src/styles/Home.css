@@ -30,8 +30,8 @@
   right: 0;
   bottom: 0;
   background-image: 
-    linear-gradient(#14b8a6 1px, transparent 1px),
-    linear-gradient(90deg, #14b8a6 1px, transparent 1px);
+    linear-gradient(#006666 1px, transparent 1px),
+    linear-gradient(90deg, #006666 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
@@ -55,19 +55,19 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: #f0fdfa;
-  border: 1px solid #99f6e4;
+  background: #e6f2f2;
+  border: 1px solid #99cccc;
   border-radius: 20px;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #0d9488;
+  color: #004d4d;
   margin-bottom: 1.5rem;
 }
 
 .badge-dot {
   width: 6px;
   height: 6px;
-  background: #14b8a6;
+  background: #006666;
   border-radius: 50%;
   animation: pulse 2s infinite;
 }
@@ -87,7 +87,7 @@
 }
 
 .hero-title .highlight {
-  color: #14b8a6;
+  color: #006666;
   position: relative;
 }
 
@@ -121,12 +121,12 @@
 }
 
 .btn-primary {
-  background: #14b8a6;
+  background: #006666;
   color: white;
 }
 
 .btn-primary:hover {
-  background: #0d9488;
+  background: #004d4d;
   transform: translateY(-1px);
 }
 
@@ -318,7 +318,7 @@
   width: 28px;
   height: 28px;
   border-radius: 6px;
-  background: #14b8a6;
+  background: #006666;
   color: white;
   display: flex;
   align-items: center;
@@ -383,7 +383,7 @@
 }
 
 .feature-card:hover {
-  border-color: #14b8a6;
+  border-color: #006666;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
@@ -393,9 +393,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f0fdfa;
+  background: #e6f2f2;
   border-radius: 10px;
-  color: #14b8a6;
+  color: #006666;
   margin-bottom: 1.25rem;
 }
 
@@ -440,7 +440,7 @@
 }
 
 .btn-cta {
-  background: #14b8a6;
+  background: #006666;
   color: white;
   padding: 1rem 2rem;
   border-radius: 8px;
@@ -452,7 +452,7 @@
 }
 
 .btn-cta:hover {
-  background: #0d9488;
+  background: #004d4d;
   transform: translateY(-1px);
 }
 

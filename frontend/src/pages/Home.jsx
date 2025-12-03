@@ -39,17 +39,7 @@ function Home() {
                 I have an account
               </Link>
             </div>
-            <div className="hero-stats">
-              <div className="stat-item">
-                <div className="stat-number">2,500+</div>
-                <div className="stat-label">Active users</div>
-              </div>
-              <div className="stat-divider"></div>
-              <div className="stat-item">
-                <div className="stat-number">50K+</div>
-                <div className="stat-label">Contacts managed</div>
-              </div>
-            </div>
+           
           </div>
           
           <div className="hero-visual">
@@ -103,14 +93,6 @@ function Home() {
                 </div>
               </div>
             </div>
-            <div className="floating-card card-1">
-              <div className="mini-icon">+</div>
-              <span>Quick Add</span>
-            </div>
-            <div className="floating-card card-2">
-              <div className="mini-icon">↓</div>
-              <span>Export CSV</span>
-            </div>
           </div>
         </div>
       </section>
@@ -124,17 +106,7 @@ function Home() {
           </div>
           
           <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon-wrapper">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <rect x="5" y="5" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M9 11L11 13L15 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              </div>
-              <h3>Smart Organization</h3>
-              <p>Tag, filter, and group contacts however makes sense for your workflow.</p>
-            </div>
-            
+           
             <div className="feature-card">
               <div className="feature-icon-wrapper">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -145,16 +117,7 @@ function Home() {
               <h3>Real-time Sync</h3>
               <p>Access your contacts from any device. Changes sync instantly across all platforms.</p>
             </div>
-            
-            <div className="feature-card">
-              <div className="feature-icon-wrapper">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <h3>Privacy First</h3>
-              <p>Your data stays yours. Encrypted storage with zero third-party access.</p>
-            </div>
+          
             
             <div className="feature-card">
               <div className="feature-icon-wrapper">
@@ -167,16 +130,6 @@ function Home() {
               <p>Find anyone in milliseconds. No more scrolling through endless lists.</p>
             </div>
             
-            <div className="feature-card">
-              <div className="feature-icon-wrapper">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M3 9H21M9 3V21" stroke="currentColor" strokeWidth="2"/>
-                </svg>
-              </div>
-              <h3>Import & Export</h3>
-              <p>Migrate from any platform. Export to CSV anytime. Your data, your rules.</p>
-            </div>
             
             <div className="feature-card">
               <div className="feature-icon-wrapper">
@@ -201,7 +154,6 @@ function Home() {
             <Link to="/signup" className="btn btn-cta">
               Create your free account
             </Link>
-            <div className="cta-note">No credit card required • Free forever</div>
           </div>
         </div>
       </section>
