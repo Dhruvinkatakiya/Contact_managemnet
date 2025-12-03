@@ -119,12 +119,11 @@ function Dashboard() {
           <a href="#" className="nav-item active">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
-                d="M10 5C7.79086 5 6 6.79086 6 9C6 11.2091 7.79086 13 10 13C12.2091 13 14 11.2091 14 9C14 6.79086 12.2091 5 10 5Z"
-                fill="currentColor"
-              />
-              <path
-                d="M4 16C4 13.7909 5.79086 12 8 12H12C14.2091 12 16 13.7909 16 16V17H4V16Z"
-                fill="currentColor"
+                d="M3 10L10 3L17 10M5 8V17H8V13H12V17H15V8"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             Home
